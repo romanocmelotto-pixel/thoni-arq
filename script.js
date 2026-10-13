@@ -2,53 +2,60 @@ const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
 const hoverElements = document.querySelectorAll('.hover-invert, .hover-invert-black, .marquee-container, button, a, .hero-cta-btn, .btn-contact, .client-card, .benefit-item');
 
-// Custom Cursor Logic
-if (window.matchMedia("(pointer: fine)").matches) {
+// Custom Cursor Logic with robust visibility
+if (cursor && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
+    let hasMoved = false;
+
     document.addEventListener('mousemove', (e) => {
-        if (cursor && cursorFollower) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
+        if (!hasMoved) {
+            hasMoved = true;
+            document.body.classList.add('custom-cursor-enabled');
+            cursor.style.opacity = '1';
+            cursorFollower.style.opacity = '1';
         }
+
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
     });
 
     hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
-            if (cursor && cursorFollower) {
-                cursor.classList.add('hover-active');
-                cursorFollower.style.opacity = '0';
-            }
+            cursor.classList.add('hover-active');
+            cursorFollower.style.opacity = '0';
         });
         
         el.addEventListener('mouseleave', () => {
-            if (cursor && cursorFollower) {
-                cursor.classList.remove('hover-active');
-                cursorFollower.style.opacity = '1';
-            }
+            cursor.classList.remove('hover-active');
+            cursorFollower.style.opacity = '1';
         });
     });
 
-    document.body.addEventListener('mouseenter', (e) => {
+    document.addEventListener('mouseover', (e) => {
         const target = e.target;
-        if(target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('.client-card') || target.closest('.accordion-header') || target.closest('.benefit-item'))) {
-            if (cursor && cursorFollower) {
-                cursor.classList.add('hover-active');
-                cursorFollower.style.opacity = '0';
-            }
-        }
-    }, true);
-
-    document.body.addEventListener('mouseleave', (e) => {
-        const target = e.target;
-        if(target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('.client-card') || target.closest('.accordion-header') || target.closest('.benefit-item'))) {
-            if (cursor && cursorFollower) {
-                cursor.classList.remove('hover-active');
+        if (target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('.client-card') || target.closest('.accordion-header') || target.closest('.benefit-item') || target.closest('.hero-cta-btn'))) {
+            cursor.classList.add('hover-active');
+            cursorFollower.style.opacity = '0';
+        } else {
+            cursor.classList.remove('hover-active');
+            if (hasMoved && (!modal || !modal.classList.contains('active'))) {
                 cursorFollower.style.opacity = '1';
             }
         }
-    }, true);
+    });
+
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorFollower.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+        if (hasMoved && (!modal || !modal.classList.contains('active'))) {
+            cursor.style.opacity = '1';
+            cursorFollower.style.opacity = '1';
+        }
+    });
 }
 
 // Pilares Click/Accordion Logic (Opens 2-column layout without overlapping text)

@@ -13,6 +13,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* Enable custom cursor styling only when body has custom-cursor-enabled class */
+body.custom-cursor-enabled,
+body.custom-cursor-enabled * {
     cursor: none;
 }
 
@@ -90,16 +95,27 @@ body {
 .logo-link {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     text-decoration: none;
     color: inherit;
     letter-spacing: -0.02em;
 }
 
 .nav-logo-icon {
-    width: 28px;
-    height: 28px;
+    width: 44px;
+    height: 44px;
     object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover .nav-logo-icon {
+    transform: scale(1.08);
+}
+
+.logo-text {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 .nav-links {
