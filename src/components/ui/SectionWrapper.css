@@ -1,0 +1,30 @@
+.section-wrapper {
+  width: 100%;
+  padding: 5rem 0;
+}
+
+.section-wrapper--light {
+  background-color: var(--color-light);
+  color: var(--color-text);
+}
+
+.section-wrapper--dark {
+  background-color: var(--color-dark);
+  color: var(--color-text-light);
+}
+
+.section-wrapper__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .section-wrapper {
+    padding: 3.5rem 0;
+  }
+  .section-wrapper__inner {
+    padding: 0 1.25rem;
+  }
+}

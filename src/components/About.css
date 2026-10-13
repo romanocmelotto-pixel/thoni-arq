@@ -1,0 +1,120 @@
+.about__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Image */
+.about__image-wrap {
+  position: relative;
+}
+
+.about__image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Floating badge */
+.about__image-badge {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  background-color: var(--color-dark);
+  border: 1px solid var(--color-border);
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.about__badge-number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.about__badge-label {
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 235, 0.6);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Text */
+.about__title {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.about__body {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--color-muted);
+  line-height: 1.95;
+  margin-bottom: 1.1rem;
+}
+
+.about__body:last-of-type {
+  margin-bottom: 0;
+}
+
+/* CTA row */
+.about__cta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.about__instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  transition: color var(--transition-base);
+}
+
+.about__instagram:hover {
+  color: var(--color-primary);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about__layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .about__image-wrap {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .about__image-badge {
+    right: 0;
+    bottom: -1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__image-badge {
+    position: static;
+    flex-direction: row;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+  }
+}

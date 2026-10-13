@@ -1,0 +1,209 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: background var(--transition-base), box-shadow var(--transition-base);
+}
+
+.header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header__logo img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity var(--transition-base);
+}
+
+/* Initially on dark hero: show light logo, hide dark logo */
+.header__logo-light { opacity: 1; }
+.header__logo-dark  { opacity: 0; position: absolute; }
+
+/* Scrolled: show dark logo, hide light logo */
+.header--scrolled .header__logo-light { opacity: 0; }
+.header--scrolled .header__logo-dark  { opacity: 1; position: static; }
+
+/* Nav */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header__nav-link {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 235, 0.85);
+  transition: color var(--transition-base);
+}
+
+.header__nav-link:hover {
+  color: var(--color-accent);
+}
+
+.header--scrolled .header__nav-link {
+  color: var(--color-text);
+}
+
+.header--scrolled .header__nav-link:hover {
+  color: var(--color-primary);
+}
+
+/* CTA button in header */
+.header__cta {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  background-color: var(--color-accent);
+  padding: 0.6rem 1.4rem;
+  border: 1.5px solid var(--color-accent);
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+.header__cta:hover {
+  background-color: transparent;
+  color: var(--color-accent);
+}
+
+.header--scrolled .header__cta:hover {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Scrolled state */
+.header--scrolled {
+  background-color: rgba(250, 248, 246, 0.97);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.07);
+}
+
+.header--scrolled .header__cta {
+  color: var(--color-dark);
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Hamburger */
+.header__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.header__hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background-color: var(--color-text-light);
+  transition: transform var(--transition-base), opacity var(--transition-base);
+  transform-origin: center;
+}
+
+.header--scrolled .header__hamburger span {
+  background-color: var(--color-text);
+}
+
+.header--open .header__hamburger span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.header--open .header__hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.header--open .header__hamburger span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile menu */
+.header__mobile-menu {
+  display: none;
+  background-color: var(--color-dark);
+  padding: 1.5rem 2rem 2rem;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.header__mobile-link,
+.header__mobile-cta {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.9rem 0;
+  color: var(--color-text-light);
+  border-bottom: 1px solid rgba(245, 240, 235, 0.08);
+  transition: color var(--transition-base);
+}
+
+.header__mobile-link:hover {
+  color: var(--color-accent);
+}
+
+.header__mobile-cta {
+  margin-top: 1.25rem;
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.85rem 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.header__mobile-cta:hover {
+  background-color: var(--color-accent);
+  color: var(--color-dark);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .header__nav {
+    display: none;
+  }
+
+  .header__hamburger {
+    display: flex;
+  }
+
+  .header__mobile-menu {
+    display: block;
+  }
+
+  .header--open .header__mobile-menu {
+    max-height: 400px;
+    padding: 1.5rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__inner {
+    padding: 0 1.25rem;
+    height: 68px;
+  }
+  .header__logo img {
+    height: 38px;
+  }
+}

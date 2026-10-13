@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://thoniarq.com.br/sitemap.xml
