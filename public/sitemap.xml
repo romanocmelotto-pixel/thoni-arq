@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://thoniarq.com.br/</loc>
-    <lastmod>2026-10-13</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://thoniarq.com.br/images/about/mery-1.jpg</image:loc>
+      <image:title>Arquiteta Meryellen Thoni Melotto CAU A185376-7</image:title>
+      <image:caption>Meryellen Thoni Melotto, arquiteta fundadora da Thoni Arquitetura em Volta Redonda.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://thoniarq.com.br/images/logo/thumbnail-mery.png</image:loc>
+      <image:title>Logo Thoni Arquitetura</image:title>
+    </image:image>
   </url>
 </urlset>
