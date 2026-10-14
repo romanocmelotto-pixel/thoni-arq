@@ -506,7 +506,7 @@ body {
 }
 
 /* ==========================================================================
-   Full-Width Showcase Gallery (Opção 1: Editorial Slider)
+   Full-Bleed Horizontal Carousel (Projetos Verticais Lado a Lado)
    ========================================================================== */
 .showcase-section {
     width: 100%;
@@ -514,13 +514,21 @@ body {
     background-color: var(--bg-black);
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     overflow: hidden;
+    padding: 6rem 0 5rem;
 }
 
 .showcase-top-bar {
-    padding: 6rem 5rem 2.5rem;
+    padding: 0 5rem 2.5rem;
 }
 
 .showcase-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+}
+
+.showcase-header-left {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -545,207 +553,228 @@ body {
     margin: 0;
 }
 
-.showcase-slider-wrapper {
-    position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    height: 75vh;
-    min-height: 540px;
-    max-height: 840px;
-    overflow: hidden;
-    background-color: #050505;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: pan-y;
-}
-
-.showcase-slides {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.showcase-slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    transform: scale(1.04);
-    z-index: 1;
-}
-
-.showcase-slide.active {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-    z-index: 2;
-}
-
-.showcase-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    pointer-events: none;
-}
-
-.showcase-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(5, 5, 5, 0.1) 0%,
-        rgba(5, 5, 5, 0.25) 35%,
-        rgba(5, 5, 5, 0.75) 70%,
-        rgba(5, 5, 5, 0.96) 100%
-    );
-    display: flex;
-    align-items: flex-end;
-    padding: 3rem 5rem 5rem;
-    pointer-events: none;
-}
-
-.showcase-caption {
-    max-width: 760px;
-    pointer-events: auto;
-}
-
-.showcase-slide.active .showcase-caption {
-    animation: showcaseFadeIn 0.7s ease-out both;
-}
-
-@keyframes showcaseFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.caption-category {
-    display: inline-block;
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent-color);
-    margin-bottom: 0.6rem;
-}
-
-.caption-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3.5vw, 2.7rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    color: #ffffff;
-    line-height: 1.15;
-    margin-bottom: 0.8rem;
-}
-
-.caption-desc {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 1.8vw, 1.15rem);
-    font-weight: 300;
-    line-height: 1.6;
-    color: #d2d2d2;
-    max-width: 650px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-}
-
-/* Navigation Buttons */
-.showcase-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: rgba(20, 20, 20, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-white);
-    font-size: 2.4rem;
+.showcase-header-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-    cursor: pointer !important;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-
-.showcase-nav-btn:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    color: var(--bg-black);
-    transform: translateY(-50%) scale(1.08);
-}
-
-.showcase-nav-btn.prev {
-    left: 2.5rem;
-}
-
-.showcase-nav-btn.next {
-    right: 2.5rem;
-}
-
-/* Bottom Bar: Counter & Progress */
-.showcase-bottom-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 5rem 1.6rem;
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-    pointer-events: none;
+    gap: 1.8rem;
 }
 
 .showcase-counter {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 800;
     letter-spacing: 0.2em;
     color: var(--accent-color);
     white-space: nowrap;
 }
 
-.showcase-progress {
-    flex: 1;
-    max-width: 380px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 2px;
-    margin: 0 2rem;
+.carousel-nav-arrows {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.carousel-arrow-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--text-white);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer !important;
+    transition: all 0.3s ease;
+}
+
+.carousel-arrow-btn:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-black);
+    transform: scale(1.08);
+}
+
+/* Carousel Container & Full-Bleed Track */
+.carousel-container {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     overflow: hidden;
 }
 
-.showcase-progress-bar {
-    height: 100%;
-    width: 10%;
-    background: var(--accent-color);
-    transition: width 0.4s ease;
-    border-radius: 2px;
+.carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 1rem 5rem 2.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-.showcase-swipe-hint {
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+/* Vertical Carousel Cards (Proporção 4:5 perfeita para fotos verticais) */
+.carousel-card {
+    flex: 0 0 auto;
+    height: 68vh;
+    min-height: 480px;
+    max-height: 720px;
+    aspect-ratio: 4 / 5;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+    background-color: #121212;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.carousel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+    border-color: rgba(212, 163, 150, 0.4);
+}
+
+.carousel-img-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carousel-card:hover .carousel-img {
+    transform: scale(1.05);
+}
+
+.carousel-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.65) 75%,
+        rgba(0, 0, 0, 0.94) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem 1.6rem;
+    pointer-events: none;
+}
+
+.card-tag {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 0.4rem;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Floating Navigation Arrows on Desktop */
+.carousel-float-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: rgba(15, 15, 15, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-white);
+    font-size: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    cursor: pointer !important;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.carousel-float-btn:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-black);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-float-btn.prev {
+    left: 1.8rem;
+}
+
+.carousel-float-btn.next {
+    right: 1.8rem;
+}
+
+/* Bottom Progress Strip */
+.carousel-bottom-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 5rem 0;
+}
+
+.carousel-progress-track {
+    width: 240px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-progress-thumb {
+    width: 36px;
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+    transform: translateX(0);
+    transition: transform 0.08s ease-out;
+}
+
+.carousel-hint {
     font-family: var(--font-display);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.18em;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
 }
 
@@ -1044,24 +1073,22 @@ body {
     .hero, .grid-item, .faq-section, .about-section, .benefits-section, .cta-strip {
         padding: 5rem 2rem;
     }
+    .showcase-section {
+        padding: 5rem 0 3.5rem;
+    }
     .showcase-top-bar {
-        padding: 4rem 2rem 1.8rem;
+        padding: 0 2rem 2rem;
     }
-    .showcase-slider-wrapper {
-        height: 65vh;
-        min-height: 480px;
+    .carousel-track {
+        padding: 1rem 2rem 2rem;
+        gap: 1.2rem;
     }
-    .showcase-overlay {
-        padding: 2.5rem 2.5rem 4.5rem;
+    .carousel-card {
+        height: 60vh;
+        min-height: 420px;
     }
-    .showcase-bottom-bar {
-        padding: 1rem 2.5rem 1.4rem;
-    }
-    .showcase-nav-btn.prev {
-        left: 1.5rem;
-    }
-    .showcase-nav-btn.next {
-        right: 1.5rem;
+    .carousel-bottom-strip {
+        padding: 1rem 2rem 0;
     }
     .about-grid {
         grid-template-columns: 1fr;
@@ -1113,46 +1140,54 @@ body {
         width: 100%;
         text-align: center;
     }
+    .showcase-section {
+        padding: 3.5rem 0 2.5rem;
+    }
     .showcase-top-bar {
-        padding: 3.5rem 1.5rem 1.5rem;
+        padding: 0 1.5rem 1.5rem;
     }
-    .showcase-slider-wrapper {
-        height: 62vh;
-        min-height: 440px;
-        max-height: 580px;
+    .showcase-header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
     }
-    .showcase-overlay {
-        padding: 1.5rem 1.2rem 4rem;
+    .showcase-header-controls {
+        width: 100%;
+        justify-content: space-between;
     }
-    .caption-title {
-        font-size: 1.45rem;
-        margin-bottom: 0.4rem;
+    .carousel-track {
+        padding: 0.5rem 1.2rem 1.8rem;
+        gap: 1rem;
     }
-    .caption-desc {
-        font-size: 0.88rem;
-        line-height: 1.45;
+    .carousel-card {
+        height: 56vh;
+        min-height: 380px;
+        max-height: 500px;
     }
-    .showcase-nav-btn {
-        width: 44px;
-        height: 44px;
-        font-size: 1.8rem;
+    .carousel-card-overlay {
+        padding: 1.4rem 1.2rem;
     }
-    .showcase-nav-btn.prev {
-        left: 0.8rem;
+    .card-tag {
+        font-size: 0.68rem;
     }
-    .showcase-nav-btn.next {
-        right: 0.8rem;
+    .card-title {
+        font-size: 1.05rem;
     }
-    .showcase-bottom-bar {
-        padding: 0.8rem 1.2rem 1.2rem;
+    .carousel-float-btn {
+        display: none;
     }
-    .showcase-progress {
-        margin: 0 0.8rem;
-        max-width: 120px;
+    .carousel-bottom-strip {
+        padding: 0.8rem 1.2rem 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
     }
-    .showcase-swipe-hint {
+    .carousel-progress-track {
+        width: 100%;
+        max-width: 200px;
+    }
+    .carousel-hint {
         font-size: 0.65rem;
-        letter-spacing: 0.12em;
     }
     .footer-subbar-content {
         flex-direction: column;

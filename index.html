@@ -252,142 +252,299 @@
             </div>
         </section>
 
-        <!-- Full-Width Project Showcase Slider (Opção 1: Largura Total, Mobile-first Swipe, Legenda Sobreposta) -->
+        <!-- Full-Bleed Horizontal Carousel (Projetos em Destaque - Formato Lado a Lado para Fotos Verticais) -->
         <section id="projetos" class="showcase-section bg-black text-white">
             <div class="showcase-top-bar">
                 <div class="container showcase-header-container">
-                    <span class="showcase-badge">PORTFÓLIO AUTORAL</span>
-                    <h2 class="showcase-main-title">PROJETOS EM DESTAQUE</h2>
+                    <div class="showcase-header-left">
+                        <span class="showcase-badge">PORTFÓLIO AUTORAL</span>
+                        <h2 class="showcase-main-title">PROJETOS EM DESTAQUE</h2>
+                    </div>
+                    <div class="showcase-header-controls">
+                        <span class="showcase-counter" id="carousel-counter">01 / 26</span>
+                        <div class="carousel-nav-arrows">
+                            <button class="carousel-arrow-btn" id="carousel-prev" aria-label="Fotos anteriores">&#8249;</button>
+                            <button class="carousel-arrow-btn" id="carousel-next" aria-label="Próximas fotos">&#8250;</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="showcase-slider-wrapper" id="showcase-slider" aria-label="Galeria de Projetos">
-                <!-- Slides Container -->
-                <div class="showcase-slides" id="showcase-slides">
-                    <!-- Slide 1 -->
-                    <div class="showcase-slide active">
-                        <img src="images/portfolio/clinica-odonto-1.jpg" alt="Consultório Odontológico — Vista Principal" class="showcase-img" loading="eager">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">COMERCIAL • SAÚDE & BEM-ESTAR</span>
-                                <h3 class="caption-title">CONSULTÓRIO ODONTOLÓGICO</h3>
-                                <p class="caption-desc">Divisória escultural com fios dourados, iluminação cênica e circulação ergonômica entre consultório e esterilização.</p>
-                            </div>
+            <div class="carousel-container" id="carousel-container">
+                <div class="carousel-track" id="carousel-track">
+                    <!-- 1 -->
+                    <div class="carousel-card" data-index="1">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/1residencial2-8.jpg" alt="Residencial Suíte Master — Cabeceira & Iluminação Cênica" class="carousel-img" loading="eager">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • SUÍTE MASTER</span>
+                            <h3 class="card-title">CABECEIRA & ILUMINAÇÃO CÊNICA</h3>
                         </div>
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/clinica-odonto-4.jpg" alt="Consultório Odontológico — Recepção" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">COMERCIAL • RECEPÇÃO & FLUXOS</span>
-                                <h3 class="caption-title">RECEPÇÃO ODONTOLÓGICA</h3>
-                                <p class="caption-desc">Acolhimento imediato com marcenaria sob medida, luz difusa e revestimentos nobres de alta durabilidade.</p>
-                            </div>
+                    <!-- 2 -->
+                    <div class="carousel-card" data-index="2">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/2residencial2-4.jpg" alt="Residencial Suíte Master — Bancada & Espelho Iluminado" class="carousel-img" loading="eager">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • SUÍTE MASTER</span>
+                            <h3 class="card-title">BANCADA & ESPELHO ILUMINADO</h3>
                         </div>
                     </div>
-                    <!-- Slide 3 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/clinica-vet-1.jpg" alt="Clínica Veterinária Moverpet — Recepção" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">COMERCIAL • CLÍNICA VETERINÁRIA</span>
-                                <h3 class="caption-title">CLÍNICA MOVERPET</h3>
-                                <p class="caption-desc">Identidade visual marcante, recepção acolhedora para tutores e pets com materiais laváveis e funcionais.</p>
-                            </div>
+                    <!-- 3 -->
+                    <div class="carousel-card" data-index="3">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/3residencial2-6.jpg" alt="Residencial Suíte Master — Detalhes de Marcenaria" class="carousel-img" loading="eager">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • SUÍTE MASTER</span>
+                            <h3 class="card-title">DETALHES DE MARCENARIA</h3>
                         </div>
                     </div>
-                    <!-- Slide 4 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/clinica-vet-2.jpg" alt="Clínica Veterinária Moverpet — Sala de Atendimento" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">COMERCIAL • CONSULTÓRIO CLÍNICO</span>
-                                <h3 class="caption-title">CONSULTÓRIO VETERINÁRIO</h3>
-                                <p class="caption-desc">Fluxo operacional otimizado para exames e consultas, unindo segurança sanitária e estética profissional.</p>
-                            </div>
+                    <!-- 4 -->
+                    <div class="carousel-card" data-index="4">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/4residencial2-5.jpg" alt="Residencial Suíte Master — Sala de Banho Master" class="carousel-img" loading="eager">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • SUÍTE MASTER</span>
+                            <h3 class="card-title">SALA DE BANHO MASTER</h3>
                         </div>
                     </div>
-                    <!-- Slide 5 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/salao-1.jpg" alt="Salão de Beleza & Estética — Visão Geral" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">COMERCIAL • BELEZA & CUIDADOS</span>
-                                <h3 class="caption-title">SALÃO DE BELEZA & ESTÉTICA</h3>
-                                <p class="caption-desc">Atmosfera sensorial requintada com iluminação frontal sem sombras para bancadas de corte e maquiagem.</p>
-                            </div>
+                    <!-- 5 -->
+                    <div class="carousel-card" data-index="5">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/5residencial2-3.jpg" alt="Residencial Suíte Master — Nicho & Revestimentos Nobres" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • SUÍTE MASTER</span>
+                            <h3 class="card-title">NICHO & REVESTIMENTOS NOBRES</h3>
                         </div>
                     </div>
-                    <!-- Slide 6 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/salao-2.jpg" alt="Salão de Beleza & Estética — Lavatórios" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">COMERCIAL • ESPAÇO RELAX</span>
-                                <h3 class="caption-title">ÁREA DE LAVATÓRIOS</h3>
-                                <p class="caption-desc">Iluminação indireta e conforto visual para criar uma experiência de relaxamento completa durante o atendimento.</p>
-                            </div>
+                    <!-- 6 -->
+                    <div class="carousel-card" data-index="6">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/6residencial2-1.jpg" alt="Residencial Suíte Master — Suíte Master Integrada" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • SUÍTE MASTER</span>
+                            <h3 class="card-title">SUÍTE MASTER INTEGRADA</h3>
                         </div>
                     </div>
-                    <!-- Slide 7 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/residencial1-1.jpg" alt="Residencial Contemporâneo — Living Integrado" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">RESIDENCIAL • LIVING & ESTAR</span>
-                                <h3 class="caption-title">RESIDENCIAL CONTEMPORÂNEO</h3>
-                                <p class="caption-desc">Conceito aberto integrando living, sala de jantar e iluminação linear que valoriza a amplitude do espaço.</p>
-                            </div>
+                    <!-- 7 -->
+                    <div class="carousel-card" data-index="7">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/7residencial2-2.jpg" alt="Residencial Suíte Master — Closet & Circulação" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • SUÍTE MASTER</span>
+                            <h3 class="card-title">CLOSET & CIRCULAÇÃO</h3>
                         </div>
                     </div>
-                    <!-- Slide 8 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/residencial1-4.jpg" alt="Residencial Contemporâneo — Cozinha Gourmet" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">RESIDENCIAL • COZINHA GOURMET</span>
-                                <h3 class="caption-title">ILHA GOURMET & MARCENARIA</h3>
-                                <p class="caption-desc">Bancadas contínuas, torre quente embutida e paleta sofisticada em tons neutros e madeira natural.</p>
-                            </div>
+                    <!-- 8 -->
+                    <div class="carousel-card" data-index="8">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/8residencial2-7.jpg" alt="Residencial Suíte Master — Atmosfera Intimista" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • SUÍTE MASTER</span>
+                            <h3 class="card-title">ATMOSFERA INTIMISTA</h3>
                         </div>
                     </div>
-                    <!-- Slide 9 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/residencial2-1.jpg" alt="Residencial Suíte Master — Quarto" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">RESIDENCIAL • SUÍTE MASTER</span>
-                                <h3 class="caption-title">SUÍTE MASTER</h3>
-                                <p class="caption-desc">Painel de cabeceira estofado com iluminação cênica embutida, transmitindo aconchego e intimismo.</p>
-                            </div>
+                    <!-- 9 -->
+                    <div class="carousel-card" data-index="9">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/9clinica-odonto-2.jpg" alt="Consultório Odontológico — Consultório Principal" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • ODONTOLOGIA</span>
+                            <h3 class="card-title">CONSULTÓRIO PRINCIPAL</h3>
                         </div>
                     </div>
-                    <!-- Slide 10 -->
-                    <div class="showcase-slide">
-                        <img src="images/portfolio/residencial2-5.jpg" alt="Residencial Suíte Master — Banheiro" class="showcase-img" loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="showcase-caption">
-                                <span class="caption-category">RESIDENCIAL • BANHO MASTER</span>
-                                <h3 class="caption-title">SALA DE BANHO MASTER</h3>
-                                <p class="caption-desc">Metais nobres, nicho iluminado e espelho com luz difusa para um espaço com padrão de hotel boutique.</p>
-                            </div>
+                    <!-- 10 -->
+                    <div class="carousel-card" data-index="10">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/10clinica-odonto-3.jpg" alt="Consultório Odontológico — Divisória Escultural & LED" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • ODONTOLOGIA</span>
+                            <h3 class="card-title">DIVISÓRIA ESCULTURAL & LED</h3>
+                        </div>
+                    </div>
+                    <!-- 11 -->
+                    <div class="carousel-card" data-index="11">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/11clinica-vet-1.jpg" alt="Clínica Veterinária Moverpet — Recepção & Identidade Visual" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • CLÍNICA MOVERPET</span>
+                            <h3 class="card-title">RECEPÇÃO & IDENTIDADE VISUAL</h3>
+                        </div>
+                    </div>
+                    <!-- 12 -->
+                    <div class="carousel-card" data-index="12">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/12clinica-vet-2.jpg" alt="Clínica Veterinária Moverpet — Consultório Veterinário" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • CLÍNICA MOVERPET</span>
+                            <h3 class="card-title">CONSULTÓRIO VETERINÁRIO</h3>
+                        </div>
+                    </div>
+                    <!-- 13 -->
+                    <div class="carousel-card" data-index="13">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/13clinica-vet-3.jpg" alt="Clínica Veterinária Moverpet — Sala de Procedimentos" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • CLÍNICA MOVERPET</span>
+                            <h3 class="card-title">SALA DE PROCEDIMENTOS</h3>
+                        </div>
+                    </div>
+                    <!-- 14 -->
+                    <div class="carousel-card" data-index="14">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/14residencial1-1.jpg" alt="Residencial Contemporâneo — Living & Estar Integrado" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • CONTEMPORÂNEO</span>
+                            <h3 class="card-title">LIVING & ESTAR INTEGRADO</h3>
+                        </div>
+                    </div>
+                    <!-- 15 -->
+                    <div class="carousel-card" data-index="15">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/15residencial1-5.jpg" alt="Residencial Contemporâneo — Sala de Jantar & Pendente" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • CONTEMPORÂNEO</span>
+                            <h3 class="card-title">SALA DE JANTAR & PENDENTE</h3>
+                        </div>
+                    </div>
+                    <!-- 16 -->
+                    <div class="carousel-card" data-index="16">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/16residencial1-4.jpg" alt="Residencial Contemporâneo — Ilha Gourmet & Marcenaria" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • COZINHA GOURMET</span>
+                            <h3 class="card-title">ILHA GOURMET & MARCENARIA</h3>
+                        </div>
+                    </div>
+                    <!-- 17 -->
+                    <div class="carousel-card" data-index="17">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/17residencial1-7.jpg" alt="Residencial Contemporâneo — Espaço Gourmet Externo" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • ÁREA GOURMET</span>
+                            <h3 class="card-title">ESPAÇO GOURMET EXTERNO</h3>
+                        </div>
+                    </div>
+                    <!-- 18 -->
+                    <div class="carousel-card" data-index="18">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/18residencial1-6.jpg" alt="Residencial Contemporâneo — Painel de TV & Marcenaria" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • CONTEMPORÂNEO</span>
+                            <h3 class="card-title">PAINEL DE TV & MARCENARIA</h3>
+                        </div>
+                    </div>
+                    <!-- 19 -->
+                    <div class="carousel-card" data-index="19">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/19residencial1-2.jpg" alt="Residencial Contemporâneo — Conceito Aberto & Circulação" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • CONTEMPORÂNEO</span>
+                            <h3 class="card-title">CONCEITO ABERTO & CIRCULAÇÃO</h3>
+                        </div>
+                    </div>
+                    <!-- 20 -->
+                    <div class="carousel-card" data-index="20">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/20residencial1-3.jpg" alt="Residencial Contemporâneo — Iluminação Linear Embutida" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • CONTEMPORÂNEO</span>
+                            <h3 class="card-title">ILUMINAÇÃO LINEAR EMBUTIDA</h3>
+                        </div>
+                    </div>
+                    <!-- 21 -->
+                    <div class="carousel-card" data-index="21">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/21salao-1.jpg" alt="Salão de Beleza — Bancadas & Iluminação Sem Sombras" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • SALÃO DE BELEZA</span>
+                            <h3 class="card-title">BANCADAS & ILUMINAÇÃO SEM SOMBRAS</h3>
+                        </div>
+                    </div>
+                    <!-- 22 -->
+                    <div class="carousel-card" data-index="22">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/22salao-2.jpg" alt="Salão de Beleza — Área de Lavatórios & Relax" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • SALÃO DE BELEZA</span>
+                            <h3 class="card-title">ÁREA DE LAVATÓRIOS & RELAX</h3>
+                        </div>
+                    </div>
+                    <!-- 23 -->
+                    <div class="carousel-card" data-index="23">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/23residencial1-8.jpg" alt="Residencial Contemporâneo — Detalhes de Decoração" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">RESIDENCIAL • CONTEMPORÂNEO</span>
+                            <h3 class="card-title">DETALHES DE DECORAÇÃO</h3>
+                        </div>
+                    </div>
+                    <!-- 24 -->
+                    <div class="carousel-card" data-index="24">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/24clinica-odonto-6.jpg" alt="Consultório Odontológico — Sala de Esterilização & Apoio" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • ODONTOLOGIA</span>
+                            <h3 class="card-title">SALA DE ESTERILIZAÇÃO & APOIO</h3>
+                        </div>
+                    </div>
+                    <!-- 25 -->
+                    <div class="carousel-card" data-index="25">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/25clinica-odonto-5.jpg" alt="Consultório Odontológico — Circulação Técnica" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • ODONTOLOGIA</span>
+                            <h3 class="card-title">CIRCULAÇÃO TÉCNICA</h3>
+                        </div>
+                    </div>
+                    <!-- 26 -->
+                    <div class="carousel-card" data-index="26">
+                        <div class="carousel-img-wrapper">
+                            <img src="images/portfolio/26clinica-odonto-1.jpg" alt="Consultório Odontológico — Recepção Odontológica" class="carousel-img" loading="lazy">
+                        </div>
+                        <div class="carousel-card-overlay">
+                            <span class="card-tag">COMERCIAL • ODONTOLOGIA</span>
+                            <h3 class="card-title">RECEPÇÃO ODONTOLÓGICA</h3>
                         </div>
                     </div>
                 </div>
 
-                <!-- Navigation Controls -->
-                <button class="showcase-nav-btn prev" id="showcase-prev" aria-label="Foto anterior">&#8249;</button>
-                <button class="showcase-nav-btn next" id="showcase-next" aria-label="Próxima foto">&#8250;</button>
+                <!-- Floating desktop navigation arrows -->
+                <button class="carousel-float-btn prev" id="carousel-float-prev" aria-label="Rolar para esquerda">&#8249;</button>
+                <button class="carousel-float-btn next" id="carousel-float-next" aria-label="Rolar para direita">&#8250;</button>
+            </div>
 
-                <!-- Bottom Progress Bar & Counter -->
-                <div class="showcase-bottom-bar">
-                    <div class="showcase-counter" id="showcase-counter">01 / 10</div>
-                    <div class="showcase-progress">
-                        <div class="showcase-progress-bar" id="showcase-progress-bar"></div>
-                    </div>
-                    <span class="showcase-swipe-hint">DESLIZE OU USE AS SETAS ↔</span>
+            <!-- Bottom Progress Bar & Hint -->
+            <div class="carousel-bottom-strip">
+                <div class="carousel-progress-track">
+                    <div class="carousel-progress-thumb" id="carousel-progress-thumb"></div>
                 </div>
+                <span class="carousel-hint">ARRASTE OU RODE O SCROLL DO MOUSE PARA EXPLORAR ↔</span>
             </div>
         </section>
 
@@ -597,103 +754,130 @@
     });
 
     // =========================================================================
-    // Showcase Slider Logic (Full-Width Editorial Gallery)
+    // Horizontal Continuous Showcase Carousel Logic (26 Fotos Verticais)
     // =========================================================================
-    const showcaseSlides = document.querySelectorAll('.showcase-slide');
-    const totalShowcaseSlides = showcaseSlides.length;
-    const showcaseCounter = document.getElementById('showcase-counter');
-    const showcaseProgressBar = document.getElementById('showcase-progress-bar');
-    const showcasePrevBtn = document.getElementById('showcase-prev');
-    const showcaseNextBtn = document.getElementById('showcase-next');
-    const showcaseSliderWrapper = document.getElementById('showcase-slider');
-    let currentShowcaseIndex = 0;
+    const carouselTrack = document.getElementById('carousel-track');
+    const carouselContainer = document.getElementById('carousel-container');
+    const carouselCards = document.querySelectorAll('.carousel-card');
+    const totalCarouselCards = carouselCards.length;
+    const carouselCounter = document.getElementById('carousel-counter');
+    const carouselProgressThumb = document.getElementById('carousel-progress-thumb');
+    const carouselPrevBtns = [document.getElementById('carousel-prev'), document.getElementById('carousel-float-prev')];
+    const carouselNextBtns = [document.getElementById('carousel-next'), document.getElementById('carousel-float-next')];
 
-    function goToShowcaseSlide(index) {
-        if (totalShowcaseSlides === 0) return;
-        
-        if (index < 0) {
-            currentShowcaseIndex = totalShowcaseSlides - 1;
-        } else if (index >= totalShowcaseSlides) {
-            currentShowcaseIndex = 0;
-        } else {
-            currentShowcaseIndex = index;
+    function updateCarouselProgress() {
+        if (!carouselTrack || totalCarouselCards === 0) return;
+
+        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+        const progress = maxScroll > 0 ? (carouselTrack.scrollLeft / maxScroll) : 0;
+
+        if (carouselProgressThumb) {
+            // Thumb track width is 240px, thumb is 36px
+            const maxTranslate = 240 - 36;
+            carouselProgressThumb.style.transform = `translateX(${progress * maxTranslate}px)`;
         }
 
-        showcaseSlides.forEach((slide, idx) => {
-            if (idx === currentShowcaseIndex) {
-                slide.classList.add('active');
-            } else {
-                slide.classList.remove('active');
+        if (carouselCards[0]) {
+            const cardWidth = carouselCards[0].offsetWidth + 24; // width + gap
+            let activeIdx = Math.min(totalCarouselCards, Math.max(1, Math.round(carouselTrack.scrollLeft / cardWidth) + 1));
+            if (carouselCounter) {
+                const cur = String(activeIdx).padStart(2, '0');
+                const tot = String(totalCarouselCards).padStart(2, '0');
+                carouselCounter.textContent = `${cur} / ${tot}`;
             }
-        });
-
-        if (showcaseCounter) {
-            const cur = String(currentShowcaseIndex + 1).padStart(2, '0');
-            const tot = String(totalShowcaseSlides).padStart(2, '0');
-            showcaseCounter.textContent = `${cur} / ${tot}`;
-        }
-
-        if (showcaseProgressBar) {
-            const pct = ((currentShowcaseIndex + 1) / totalShowcaseSlides) * 100;
-            showcaseProgressBar.style.width = `${pct}%`;
         }
     }
 
-    if (showcasePrevBtn) {
-        showcasePrevBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            goToShowcaseSlide(currentShowcaseIndex - 1);
-        });
+    if (carouselTrack) {
+        carouselTrack.addEventListener('scroll', updateCarouselProgress, { passive: true });
+        updateCarouselProgress();
     }
 
-    if (showcaseNextBtn) {
-        showcaseNextBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            goToShowcaseSlide(currentShowcaseIndex + 1);
-        });
+    function getCarouselScrollDistance() {
+        if (!carouselCards[0]) return 400;
+        // On desktop scroll by ~1.5 cards, on mobile by 1 card
+        return window.innerWidth > 768 ? carouselCards[0].offsetWidth * 1.5 : carouselCards[0].offsetWidth + 16;
     }
 
-    // Touch Swipe Gestures (Mobile-first UX)
-    if (showcaseSliderWrapper) {
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let touchEndX = 0;
-        let touchEndY = 0;
+    carouselPrevBtns.forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (carouselTrack) {
+                    carouselTrack.scrollBy({ left: -getCarouselScrollDistance(), behavior: 'smooth' });
+                }
+            });
+        }
+    });
 
-        showcaseSliderWrapper.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].clientX;
-            touchStartY = e.changedTouches[0].clientY;
-        }, { passive: true });
+    carouselNextBtns.forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (carouselTrack) {
+                    carouselTrack.scrollBy({ left: getCarouselScrollDistance(), behavior: 'smooth' });
+                }
+            });
+        }
+    });
 
-        showcaseSliderWrapper.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            touchEndY = e.changedTouches[0].clientY;
-            
-            const deltaX = touchEndX - touchStartX;
-            const deltaY = touchEndY - touchStartY;
+    // Mouse Wheel: Scroll Horizontal suave ao passar o mouse sobre o carrossel
+    if (carouselContainer && carouselTrack) {
+        carouselContainer.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+                const atStart = carouselTrack.scrollLeft <= 5 && e.deltaY < 0;
+                const atEnd = carouselTrack.scrollLeft >= maxScroll - 5 && e.deltaY > 0;
 
-            // Only trigger if horizontal swipe is intentional and exceeds threshold
-            if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
-                if (deltaX < 0) {
-                    goToShowcaseSlide(currentShowcaseIndex + 1);
-                } else {
-                    goToShowcaseSlide(currentShowcaseIndex - 1);
+                // Se puder rolar horizontalmente no carrossel, converte a rolagem vertical em horizontal
+                if (!atStart && !atEnd && maxScroll > 0) {
+                    e.preventDefault();
+                    carouselTrack.scrollLeft += e.deltaY * 1.3;
                 }
             }
-        }, { passive: true });
+        }, { passive: false });
     }
 
-    // Keyboard Arrow Navigation when section is in view
+    // Drag com Mouse (arrasto livre no desktop)
+    if (carouselTrack) {
+        let isDown = false;
+        let startX = 0;
+        let scrollStartLeft = 0;
+
+        carouselTrack.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carouselTrack.classList.add('is-dragging');
+            startX = e.pageX - carouselTrack.offsetLeft;
+            scrollStartLeft = carouselTrack.scrollLeft;
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isDown) {
+                isDown = false;
+                carouselTrack.classList.remove('is-dragging');
+            }
+        });
+
+        carouselTrack.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carouselTrack.offsetLeft;
+            const walk = (x - startX) * 1.6;
+            carouselTrack.scrollLeft = scrollStartLeft - walk;
+        });
+    }
+
+    // Keyboard Arrow Navigation when carousel is in view
     document.addEventListener('keydown', (e) => {
-        if (!showcaseSliderWrapper) return;
-        const rect = showcaseSliderWrapper.getBoundingClientRect();
+        if (!carouselContainer || !carouselTrack) return;
+        const rect = carouselContainer.getBoundingClientRect();
         const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-        
+
         if (isInView) {
             if (e.key === 'ArrowRight') {
-                goToShowcaseSlide(currentShowcaseIndex + 1);
+                carouselTrack.scrollBy({ left: getCarouselScrollDistance(), behavior: 'smooth' });
             } else if (e.key === 'ArrowLeft') {
-                goToShowcaseSlide(currentShowcaseIndex - 1);
+                carouselTrack.scrollBy({ left: -getCarouselScrollDistance(), behavior: 'smooth' });
             }
         }
     });

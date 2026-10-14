@@ -1,6 +1,6 @@
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
-const hoverElements = document.querySelectorAll('.hover-invert, .hover-invert-black, .marquee-container, button, a, .hero-cta-btn, .btn-contact, .benefit-item, .showcase-nav-btn');
+const hoverElements = document.querySelectorAll('.hover-invert, .hover-invert-black, .marquee-container, button, a, .hero-cta-btn, .btn-contact, .benefit-item, .showcase-nav-btn, .carousel-arrow-btn, .carousel-float-btn');
 
 // Custom Cursor Logic with robust visibility
 if (cursor && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
@@ -35,7 +35,7 @@ if (cursor && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
 
     document.addEventListener('mouseover', (e) => {
         const target = e.target;
-        if (target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('.showcase-nav-btn') || target.closest('.accordion-header') || target.closest('.benefit-item') || target.closest('.hero-cta-btn'))) {
+        if (target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('.carousel-arrow-btn') || target.closest('.carousel-float-btn') || target.closest('.accordion-header') || target.closest('.benefit-item') || target.closest('.hero-cta-btn'))) {
             cursor.classList.add('hover-active');
             cursorFollower.style.opacity = '0';
         } else {
@@ -109,103 +109,130 @@ accordionHeaders.forEach(header => {
 });
 
 // =========================================================================
-// Showcase Slider Logic (Full-Width Editorial Gallery)
+// Horizontal Continuous Showcase Carousel Logic (26 Fotos Verticais)
 // =========================================================================
-const showcaseSlides = document.querySelectorAll('.showcase-slide');
-const totalShowcaseSlides = showcaseSlides.length;
-const showcaseCounter = document.getElementById('showcase-counter');
-const showcaseProgressBar = document.getElementById('showcase-progress-bar');
-const showcasePrevBtn = document.getElementById('showcase-prev');
-const showcaseNextBtn = document.getElementById('showcase-next');
-const showcaseSliderWrapper = document.getElementById('showcase-slider');
-let currentShowcaseIndex = 0;
+const carouselTrack = document.getElementById('carousel-track');
+const carouselContainer = document.getElementById('carousel-container');
+const carouselCards = document.querySelectorAll('.carousel-card');
+const totalCarouselCards = carouselCards.length;
+const carouselCounter = document.getElementById('carousel-counter');
+const carouselProgressThumb = document.getElementById('carousel-progress-thumb');
+const carouselPrevBtns = [document.getElementById('carousel-prev'), document.getElementById('carousel-float-prev')];
+const carouselNextBtns = [document.getElementById('carousel-next'), document.getElementById('carousel-float-next')];
 
-function goToShowcaseSlide(index) {
-    if (totalShowcaseSlides === 0) return;
-    
-    if (index < 0) {
-        currentShowcaseIndex = totalShowcaseSlides - 1;
-    } else if (index >= totalShowcaseSlides) {
-        currentShowcaseIndex = 0;
-    } else {
-        currentShowcaseIndex = index;
+function updateCarouselProgress() {
+    if (!carouselTrack || totalCarouselCards === 0) return;
+
+    const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+    const progress = maxScroll > 0 ? (carouselTrack.scrollLeft / maxScroll) : 0;
+
+    if (carouselProgressThumb) {
+        // Thumb track width is 240px, thumb is 36px
+        const maxTranslate = 240 - 36;
+        carouselProgressThumb.style.transform = `translateX(${progress * maxTranslate}px)`;
     }
 
-    showcaseSlides.forEach((slide, idx) => {
-        if (idx === currentShowcaseIndex) {
-            slide.classList.add('active');
-        } else {
-            slide.classList.remove('active');
+    if (carouselCards[0]) {
+        const cardWidth = carouselCards[0].offsetWidth + 24; // width + gap
+        let activeIdx = Math.min(totalCarouselCards, Math.max(1, Math.round(carouselTrack.scrollLeft / cardWidth) + 1));
+        if (carouselCounter) {
+            const cur = String(activeIdx).padStart(2, '0');
+            const tot = String(totalCarouselCards).padStart(2, '0');
+            carouselCounter.textContent = `${cur} / ${tot}`;
         }
-    });
-
-    if (showcaseCounter) {
-        const cur = String(currentShowcaseIndex + 1).padStart(2, '0');
-        const tot = String(totalShowcaseSlides).padStart(2, '0');
-        showcaseCounter.textContent = `${cur} / ${tot}`;
-    }
-
-    if (showcaseProgressBar) {
-        const pct = ((currentShowcaseIndex + 1) / totalShowcaseSlides) * 100;
-        showcaseProgressBar.style.width = `${pct}%`;
     }
 }
 
-if (showcasePrevBtn) {
-    showcasePrevBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        goToShowcaseSlide(currentShowcaseIndex - 1);
-    });
+if (carouselTrack) {
+    carouselTrack.addEventListener('scroll', updateCarouselProgress, { passive: true });
+    updateCarouselProgress();
 }
 
-if (showcaseNextBtn) {
-    showcaseNextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        goToShowcaseSlide(currentShowcaseIndex + 1);
-    });
+function getCarouselScrollDistance() {
+    if (!carouselCards[0]) return 400;
+    // On desktop scroll by ~1.5 cards, on mobile by 1 card
+    return window.innerWidth > 768 ? carouselCards[0].offsetWidth * 1.5 : carouselCards[0].offsetWidth + 16;
 }
 
-// Touch Swipe Gestures (Mobile-first UX)
-if (showcaseSliderWrapper) {
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchEndX = 0;
-    let touchEndY = 0;
+carouselPrevBtns.forEach(btn => {
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (carouselTrack) {
+                carouselTrack.scrollBy({ left: -getCarouselScrollDistance(), behavior: 'smooth' });
+            }
+        });
+    }
+});
 
-    showcaseSliderWrapper.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].clientX;
-        touchStartY = e.changedTouches[0].clientY;
-    }, { passive: true });
+carouselNextBtns.forEach(btn => {
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (carouselTrack) {
+                carouselTrack.scrollBy({ left: getCarouselScrollDistance(), behavior: 'smooth' });
+            }
+        });
+    }
+});
 
-    showcaseSliderWrapper.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        touchEndY = e.changedTouches[0].clientY;
-        
-        const deltaX = touchEndX - touchStartX;
-        const deltaY = touchEndY - touchStartY;
+// Mouse Wheel: Scroll Horizontal suave ao passar o mouse sobre o carrossel
+if (carouselContainer && carouselTrack) {
+    carouselContainer.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+            const atStart = carouselTrack.scrollLeft <= 5 && e.deltaY < 0;
+            const atEnd = carouselTrack.scrollLeft >= maxScroll - 5 && e.deltaY > 0;
 
-        // Only trigger if horizontal swipe is intentional and exceeds threshold
-        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
-            if (deltaX < 0) {
-                goToShowcaseSlide(currentShowcaseIndex + 1);
-            } else {
-                goToShowcaseSlide(currentShowcaseIndex - 1);
+            // Se puder rolar horizontalmente no carrossel, converte a rolagem vertical em horizontal
+            if (!atStart && !atEnd && maxScroll > 0) {
+                e.preventDefault();
+                carouselTrack.scrollLeft += e.deltaY * 1.3;
             }
         }
-    }, { passive: true });
+    }, { passive: false });
 }
 
-// Keyboard Arrow Navigation when section is in view
+// Drag com Mouse (arrasto livre no desktop)
+if (carouselTrack) {
+    let isDown = false;
+    let startX = 0;
+    let scrollStartLeft = 0;
+
+    carouselTrack.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carouselTrack.classList.add('is-dragging');
+        startX = e.pageX - carouselTrack.offsetLeft;
+        scrollStartLeft = carouselTrack.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isDown) {
+            isDown = false;
+            carouselTrack.classList.remove('is-dragging');
+        }
+    });
+
+    carouselTrack.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carouselTrack.offsetLeft;
+        const walk = (x - startX) * 1.6;
+        carouselTrack.scrollLeft = scrollStartLeft - walk;
+    });
+}
+
+// Keyboard Arrow Navigation when carousel is in view
 document.addEventListener('keydown', (e) => {
-    if (!showcaseSliderWrapper) return;
-    const rect = showcaseSliderWrapper.getBoundingClientRect();
+    if (!carouselContainer || !carouselTrack) return;
+    const rect = carouselContainer.getBoundingClientRect();
     const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-    
+
     if (isInView) {
         if (e.key === 'ArrowRight') {
-            goToShowcaseSlide(currentShowcaseIndex + 1);
+            carouselTrack.scrollBy({ left: getCarouselScrollDistance(), behavior: 'smooth' });
         } else if (e.key === 'ArrowLeft') {
-            goToShowcaseSlide(currentShowcaseIndex - 1);
+            carouselTrack.scrollBy({ left: -getCarouselScrollDistance(), behavior: 'smooth' });
         }
     }
 });
