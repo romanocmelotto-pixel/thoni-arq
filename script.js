@@ -1,6 +1,6 @@
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
-const hoverElements = document.querySelectorAll('.hover-invert, .hover-invert-black, .marquee-container, button, a, .hero-cta-btn, .btn-contact, .client-card, .benefit-item');
+const hoverElements = document.querySelectorAll('.hover-invert, .hover-invert-black, .marquee-container, button, a, .hero-cta-btn, .btn-contact, .benefit-item, .showcase-nav-btn');
 
 // Custom Cursor Logic with robust visibility
 if (cursor && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
@@ -35,12 +35,12 @@ if (cursor && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
 
     document.addEventListener('mouseover', (e) => {
         const target = e.target;
-        if (target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('.client-card') || target.closest('.accordion-header') || target.closest('.benefit-item') || target.closest('.hero-cta-btn'))) {
+        if (target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('.showcase-nav-btn') || target.closest('.accordion-header') || target.closest('.benefit-item') || target.closest('.hero-cta-btn'))) {
             cursor.classList.add('hover-active');
             cursorFollower.style.opacity = '0';
         } else {
             cursor.classList.remove('hover-active');
-            if (hasMoved && (!modal || !modal.classList.contains('active'))) {
+            if (hasMoved) {
                 cursorFollower.style.opacity = '1';
             }
         }
@@ -51,7 +51,7 @@ if (cursor && cursorFollower && window.matchMedia("(pointer: fine)").matches) {
         cursorFollower.style.opacity = '0';
     });
     document.addEventListener('mouseenter', () => {
-        if (hasMoved && (!modal || !modal.classList.contains('active'))) {
+        if (hasMoved) {
             cursor.style.opacity = '1';
             cursorFollower.style.opacity = '1';
         }
@@ -108,202 +108,104 @@ accordionHeaders.forEach(header => {
     });
 });
 
-// Full Project Gallery / Lightbox Data
-const PROJECTS_DATA = {
-    odonto: {
-        title: "Consultório Odontológico",
-        images: [
-            "images/portfolio/clinica-odonto-1.jpg",
-            "images/portfolio/clinica-odonto-2.jpg",
-            "images/portfolio/clinica-odonto-3.jpg",
-            "images/portfolio/clinica-odonto-4.jpg",
-            "images/portfolio/clinica-odonto-5.jpg",
-            "images/portfolio/clinica-odonto-6.jpg"
-        ]
-    },
-    moverpet: {
-        title: "Clínica Veterinária Moverpet",
-        images: [
-            "images/portfolio/clinica-vet-1.jpg",
-            "images/portfolio/clinica-vet-2.jpg",
-            "images/portfolio/clinica-vet-3.jpg"
-        ]
-    },
-    salao: {
-        title: "Salão de Beleza & Estética",
-        images: [
-            "images/portfolio/salao-1.jpg",
-            "images/portfolio/salao-2.jpg"
-        ]
-    },
-    residencial1: {
-        title: "Residencial Contemporâneo (Living)",
-        images: [
-            "images/portfolio/residencial1-1.jpg",
-            "images/portfolio/residencial1-2.jpg",
-            "images/portfolio/residencial1-3.jpg",
-            "images/portfolio/residencial1-4.jpg",
-            "images/portfolio/residencial1-5.jpg",
-            "images/portfolio/residencial1-6.jpg",
-            "images/portfolio/residencial1-7.jpg",
-            "images/portfolio/residencial1-8.jpg"
-        ]
-    },
-    residencial2: {
-        title: "Residencial Suíte Master",
-        images: [
-            "images/portfolio/residencial2-1.jpg",
-            "images/portfolio/residencial2-2.jpg",
-            "images/portfolio/residencial2-3.jpg",
-            "images/portfolio/residencial2-4.jpg",
-            "images/portfolio/residencial2-5.jpg",
-            "images/portfolio/residencial2-6.jpg",
-            "images/portfolio/residencial2-7.jpg",
-            "images/portfolio/residencial2-8.jpg"
-        ]
+// =========================================================================
+// Showcase Slider Logic (Full-Width Editorial Gallery)
+// =========================================================================
+const showcaseSlides = document.querySelectorAll('.showcase-slide');
+const totalShowcaseSlides = showcaseSlides.length;
+const showcaseCounter = document.getElementById('showcase-counter');
+const showcaseProgressBar = document.getElementById('showcase-progress-bar');
+const showcasePrevBtn = document.getElementById('showcase-prev');
+const showcaseNextBtn = document.getElementById('showcase-next');
+const showcaseSliderWrapper = document.getElementById('showcase-slider');
+let currentShowcaseIndex = 0;
+
+function goToShowcaseSlide(index) {
+    if (totalShowcaseSlides === 0) return;
+    
+    if (index < 0) {
+        currentShowcaseIndex = totalShowcaseSlides - 1;
+    } else if (index >= totalShowcaseSlides) {
+        currentShowcaseIndex = 0;
+    } else {
+        currentShowcaseIndex = index;
     }
-};
 
-let currentProjectKey = null;
-let currentImageIndex = 0;
-
-const modal = document.getElementById('gallery-modal');
-const modalTitle = document.getElementById('modal-title');
-const modalMainImage = document.getElementById('modal-main-image');
-const modalCounter = document.getElementById('modal-counter');
-const modalThumbsContainer = document.getElementById('modal-thumbs');
-const modalClose = document.getElementById('modal-close');
-const modalPrev = document.getElementById('modal-prev');
-const modalNext = document.getElementById('modal-next');
-
-function updateModalView() {
-    if (!currentProjectKey || !PROJECTS_DATA[currentProjectKey]) return;
-    
-    const project = PROJECTS_DATA[currentProjectKey];
-    const total = project.images.length;
-    
-    modalTitle.textContent = project.title;
-    modalMainImage.src = project.images[currentImageIndex];
-    modalCounter.textContent = `${currentImageIndex + 1} / ${total}`;
-    
-    // Update active thumb
-    const thumbs = modalThumbsContainer.querySelectorAll('.modal-thumb');
-    thumbs.forEach((thumb, idx) => {
-        if (idx === currentImageIndex) {
-            thumb.classList.add('active');
-            thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    showcaseSlides.forEach((slide, idx) => {
+        if (idx === currentShowcaseIndex) {
+            slide.classList.add('active');
         } else {
-            thumb.classList.remove('active');
+            slide.classList.remove('active');
         }
     });
+
+    if (showcaseCounter) {
+        const cur = String(currentShowcaseIndex + 1).padStart(2, '0');
+        const tot = String(totalShowcaseSlides).padStart(2, '0');
+        showcaseCounter.textContent = `${cur} / ${tot}`;
+    }
+
+    if (showcaseProgressBar) {
+        const pct = ((currentShowcaseIndex + 1) / totalShowcaseSlides) * 100;
+        showcaseProgressBar.style.width = `${pct}%`;
+    }
 }
 
-function openGallery(projectKey) {
-    if (!PROJECTS_DATA[projectKey]) return;
-    
-    currentProjectKey = projectKey;
-    currentImageIndex = 0;
-    
-    // Generate thumbnails
-    modalThumbsContainer.innerHTML = '';
-    const project = PROJECTS_DATA[projectKey];
-    project.images.forEach((imgSrc, idx) => {
-        const thumb = document.createElement('img');
-        thumb.src = imgSrc;
-        thumb.alt = `${project.title} miniatura ${idx + 1}`;
-        thumb.classList.add('modal-thumb');
-        if (idx === 0) thumb.classList.add('active');
-        thumb.addEventListener('click', () => {
-            currentImageIndex = idx;
-            updateModalView();
-        });
-        modalThumbsContainer.appendChild(thumb);
+if (showcasePrevBtn) {
+    showcasePrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToShowcaseSlide(currentShowcaseIndex - 1);
     });
-    
-    updateModalView();
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    // Hide custom cursor elements so native pointer is 100% visible and responsive
-    if (cursor) cursor.style.display = 'none';
-    if (cursorFollower) cursorFollower.style.display = 'none';
 }
 
-function closeGallery() {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-    
-    // Restore custom cursor
-    if (cursor) cursor.style.display = 'block';
-    if (cursorFollower) cursorFollower.style.display = 'block';
+if (showcaseNextBtn) {
+    showcaseNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToShowcaseSlide(currentShowcaseIndex + 1);
+    });
 }
 
-// Support mouse wheel scrolling across gallery images with smooth throttling
-let isWheelThrottled = false;
-if (modal) {
-    modal.addEventListener('wheel', (e) => {
-        if (isWheelThrottled) return;
+// Touch Swipe Gestures (Mobile-first UX)
+if (showcaseSliderWrapper) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    showcaseSliderWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    showcaseSliderWrapper.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        touchEndY = e.changedTouches[0].clientY;
         
-        if (Math.abs(e.deltaY) > 20 || Math.abs(e.deltaX) > 20) {
-            isWheelThrottled = true;
-            if (e.deltaY > 0 || e.deltaX > 0) {
-                nextGalleryImage();
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        // Only trigger if horizontal swipe is intentional and exceeds threshold
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+            if (deltaX < 0) {
+                goToShowcaseSlide(currentShowcaseIndex + 1);
             } else {
-                prevGalleryImage();
+                goToShowcaseSlide(currentShowcaseIndex - 1);
             }
-            setTimeout(() => {
-                isWheelThrottled = false;
-            }, 300);
         }
     }, { passive: true });
 }
 
-function nextGalleryImage() {
-    if (!currentProjectKey) return;
-    const total = PROJECTS_DATA[currentProjectKey].images.length;
-    currentImageIndex = (currentImageIndex + 1) % total;
-    updateModalView();
-}
-
-function prevGalleryImage() {
-    if (!currentProjectKey) return;
-    const total = PROJECTS_DATA[currentProjectKey].images.length;
-    currentImageIndex = (currentImageIndex - 1 + total) % total;
-    updateModalView();
-}
-
-// Client cards click listener
-const clientCards = document.querySelectorAll('.client-card[data-project]');
-clientCards.forEach(card => {
-    card.addEventListener('click', () => {
-        const projectKey = card.getAttribute('data-project');
-        openGallery(projectKey);
-    });
-});
-
-// Modal event listeners
-if (modalClose) modalClose.addEventListener('click', closeGallery);
-if (modalNext) modalNext.addEventListener('click', nextGalleryImage);
-if (modalPrev) modalPrev.addEventListener('click', prevGalleryImage);
-
-// Close on backdrop click
-if (modal) {
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeGallery();
-        }
-    });
-}
-
-// Keyboard navigation
+// Keyboard Arrow Navigation when section is in view
 document.addEventListener('keydown', (e) => {
-    if (!modal.classList.contains('active')) return;
+    if (!showcaseSliderWrapper) return;
+    const rect = showcaseSliderWrapper.getBoundingClientRect();
+    const isInView = rect.top < window.innerHeight && rect.bottom > 0;
     
-    if (e.key === 'Escape') {
-        closeGallery();
-    } else if (e.key === 'ArrowRight') {
-        nextGalleryImage();
-    } else if (e.key === 'ArrowLeft') {
-        prevGalleryImage();
+    if (isInView) {
+        if (e.key === 'ArrowRight') {
+            goToShowcaseSlide(currentShowcaseIndex + 1);
+        } else if (e.key === 'ArrowLeft') {
+            goToShowcaseSlide(currentShowcaseIndex - 1);
+        }
     }
 });
