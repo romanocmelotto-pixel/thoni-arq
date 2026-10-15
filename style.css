@@ -1961,3 +1961,194 @@ body {
         padding: 2rem 1.5rem;
     }
 }
+
+/* ==========================================================================
+   Testimonials / Social Proof Section (Editorial Black & White Cards)
+   ========================================================================== */
+.testimonials-section {
+    padding: 7rem 0 8rem;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #000;
+}
+
+.testimonials-header {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto 5rem;
+}
+
+.testimonials-header .section-tagline {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+}
+
+.testimonials-header .section-main-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.8vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.testimonials-header .section-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #888;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4.5rem;
+}
+
+.testimonial-card {
+    background: #090909;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    padding: 3rem 2.2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+.card-quote-mark {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--accent-color);
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+    user-select: none;
+}
+
+.card-stars {
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    margin-bottom: 1.4rem;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #d1d1d1;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.card-author-block {
+    margin-top: auto;
+}
+
+.card-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin-bottom: 1.4rem;
+}
+
+.card-author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.author-name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.author-role {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.project-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent-color);
+    background: rgba(212, 163, 150, 0.08);
+    border: 1px solid rgba(212, 163, 150, 0.2);
+    padding: 0.25rem 0.65rem;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+}
+
+.testimonials-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #090909;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.2rem 3rem;
+}
+
+.cta-inline-text {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0;
+}
+
+@media (max-width: 1024px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials-section {
+        padding: 5rem 0 6rem;
+    }
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .testimonial-card {
+        padding: 2.2rem 1.6rem 2rem;
+    }
+    .testimonials-cta-row {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+    }
+    .testimonials-header {
+        margin-bottom: 3.5rem;
+    }
+}
